@@ -7,12 +7,6 @@ struct Queue {
     int* array;
 };
 
-struct Stack {
-    int top;
-    unsigned capacity;
-    int* array;
-};
-
 struct Queue* createQueue(unsigned capacity) {
     struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
     queue->capacity = capacity;
@@ -73,3 +67,5 @@ int main() {
     
     return 0;
 }
+
+// TODO: stack
