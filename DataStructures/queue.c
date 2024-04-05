@@ -7,7 +7,9 @@ struct Queue {
     int* array;
 };
 
-struct Queue* createQueue(unsigned capacity) {
+typedef struct Queue Queue;
+
+Queue* createQueue(unsigned capacity) {
     struct Queue* queue = (struct Queue*)malloc(sizeof(struct Queue));
     queue->capacity = capacity;
     queue->head = 0;
@@ -18,7 +20,8 @@ struct Queue* createQueue(unsigned capacity) {
     return queue;
 }
 
-void enqueue(struct Queue* queue, int value) {
+
+void enqueue(Queue* queue, int value) {
     printf("Enqueuing %d value in queue\n", value);
     if (queue->size == queue-> capacity) return;
 
@@ -27,7 +30,7 @@ void enqueue(struct Queue* queue, int value) {
     queue->array[queue->tail] = value;   
 }
 
-int dequeue(struct Queue* queue){
+int dequeue(Queue* queue){
     if (queue-> size == 0){
         return -1;
     }
@@ -37,22 +40,23 @@ int dequeue(struct Queue* queue){
     return value ;
 }
 
-void printQueue(struct Queue* queue){
+void printQueue(Queue* queue){
     for(int i = 0; i < queue -> size; i++){
         printf("%d-th queued element is a %d\n", i, queue->array[(queue->head + i)%queue->capacity]);
     }
 }
 
-void freeQueue(struct Queue* queue) {
+void freeQueue(Queue* queue) {
     free(queue->array);
     free(queue);
 }
 
 int main() {
     int size = 10;
-    int arr[size] = {32, 23, 55, 34, 56, 95, 21, 19, 99, 43}; 
+    int arr[size];
 
-    struct Queue* queue = createQueue(size);
+
+    Queue* queue = createQueue(size);
     for (int i = 0; i < size; i++){
         enqueue(queue, arr[i]);
     }
