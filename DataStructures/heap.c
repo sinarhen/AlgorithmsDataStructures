@@ -29,8 +29,16 @@ Heap* createHeap(int capacity, int* arr){
 
     for (int i = 0; i < capacity; i++){
         heap->array[i].key = arr[i];
-        heap->array[i].left = 2*i + 1;
-        heap->array[i].right = 2*i + 2;
+        if (2*i + 1 < capacity) {
+            heap->array[i].left = 2*i + 1;
+        } else {
+            heap->array[i].left = -1;
+        }
+        if (2*i + 2 < capacity) {
+            heap->array[i].right = 2*i + 2;
+        } else {
+            heap->array[i].right = -1;
+        }
     }
     heap->size = capacity;
 
