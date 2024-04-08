@@ -86,7 +86,7 @@ void bubbleUpMinHeap(Heap* heap, int i){
 }
 
 
-void minHeapify(Heap* heap){
+void buildMinHeap(Heap* heap){
     for (int i = heap->size / 2 - 1; i >= 0 ; i--){
         bubbleDownMinHeap(heap, i);
     }
@@ -95,6 +95,13 @@ void minHeapify(Heap* heap){
 void freeHeap(Heap* heap){
     free(heap->array);
     free(heap);
+}
+
+
+void buildMaxHeap(Heap* heap){
+    for (int i = heap->size / 2 - 1; i >= 0 ; i--){
+        bubbleDownMaxHeap(heap, i);
+    }
 }
 
 void printHeapArray(Heap* heap){
@@ -108,6 +115,15 @@ void printHeapArray(Heap* heap){
     }
 
     printf(" }\n");
+}
+
+void heapSort(Heap* heap){ // If min heap then ascending
+    for (int i = heap->size - 1; i > 1; i--){
+        swap(heap->array, 0, i);
+        // heap->size = heap->size - 1;
+        buildMaxHeap(heap);
+    }
+
 }
 
 
@@ -135,14 +151,16 @@ int main (){
     printf("Initial heap:\n");
     printHeapArray(heap);
 
-    for (int i = heap->size / 2 - 1; i >= 0 ; i--){
-        bubbleDownMaxHeap(heap, i);
-    }
+    buildMaxHeap(heap);
     printf("Heap after maxHeapify:\n");
     printHeapArray(heap);
 
     bubbleUpMaxHeap(heap, 9);
     printf("Heap after bubbleUp [9]:\n");
+    printHeapArray(heap);
+
+    printf("Sorted array from heap");
+    heapSort(heap);
     printHeapArray(heap);
 
     freeHeap(heap);
