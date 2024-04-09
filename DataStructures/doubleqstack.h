@@ -1,0 +1,8 @@
+//
+// Created by Bohdan on 09.04.2024.
+//
+
+#ifndef COLORADO_DOUBLEQSTACK_H
+#define COLORADO_DOUBLEQSTACK_H
+
+#endif //COLORADO_DOUBLEQSTACK_H
