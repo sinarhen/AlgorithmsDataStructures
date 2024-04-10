@@ -31,7 +31,6 @@ void freeStack(Stack* stack)
 
 void stackPush(Stack* stack, int x){
     if (stack->top == stack->capacity) return;
-    printf("Pushing into stack on position %d value %d\n", stack->top, x);
     stack->array[stack->top] = x;
     stack->top = (stack->top + 1);
 }
@@ -40,7 +39,6 @@ int stackPop(Stack* stack){
     if (stack->top == 0) return -1;
     stack->top = stack->top - 1;
     int temp = stack->array[stack->top];
-    printf("Popped item %d from position %d \n", temp, stack->top);
     return temp;
 }
 
