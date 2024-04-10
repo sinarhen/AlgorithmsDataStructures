@@ -26,7 +26,6 @@ Queue* createQueue(unsigned capacity) {
 
 
 void enqueue(Queue* queue, int value) {
-    printf("Enqueuing %d value in queue\n", value);
     if (queue->size == queue-> capacity) return;
 
     queue->tail = (queue -> tail + 1)%queue->capacity;
