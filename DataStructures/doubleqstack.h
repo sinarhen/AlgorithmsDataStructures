@@ -28,8 +28,9 @@ void pushDoubleQStack(DoubleQStack* stack, int value) {
 
 int popDoubleQStack(DoubleQStack* stack) {
     if (stack->q1->size == 0) return -1;
-    while (stack->q1->size != 1) {
-        enqueue(stack->q2, dequeue(stack->q1));
+    while (stack->q1->size > 1) {
+        int value = dequeue(stack->q1);
+        enqueue(stack->q2, value);
     }
     int value = dequeue(stack->q1);
     Queue* temp = stack->q1;
