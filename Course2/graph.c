@@ -88,15 +88,15 @@ void addRelation(Graph* graph, Node* from, Node* to) {
     relation.from = from;
     relation.to = to;
     graph->relations[graph->relationsCount].from = from;
-    graph->relations[graph->verticesCount].to = to;
-    graph->verticesCount++;
+    graph->relations[graph->relationsCount].to = to;
+    graph->relationsCount++;
 }
 
 void printGraph(Graph* graph) {
     for (int i = 0; i < graph->verticesCount; i++) {
         printf("Vertex: %d\n", graph->vertices[i].data);
     }
-    for (int i = 0; i < graph->verticesCount; i++) {
+    for (int i = 0; i < graph->relationsCount; i++) {
         printf("Relation: %d -> %d\n", graph->relations[i].from->data, graph->relations[i].to->data);
     }
 }
@@ -108,7 +108,7 @@ void bfs(Graph* graph, Node* start) {
     while (!isQueueEmpty(queue)) {
         Node current = dequeue(queue);
         printf("Visited: %d\n", current.data);
-        for (int i = 0; i < graph->verticesCount; i++) {
+        for (int i = 0; i < graph->relationsCount; i++) {
             if (graph->relations[i].from->data == current.data && graph->relations[i].to->isVisited == 0) {
                 enqueue(queue, *graph->relations[i].to);
                 graph->relations[i].to->isVisited = 1;
